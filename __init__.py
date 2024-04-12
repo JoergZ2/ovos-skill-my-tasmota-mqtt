@@ -11,65 +11,12 @@ import json
 import paho.mqtt.client as mqtt
 
 DEFAULT_SETTINGS = {
-    "user": "admin",
-    "password": "joker",
-    "mqtthost": "localhost",
-    "mqttport": 1883,
-    "tasmota_mqtt_modus": "default",
-    "capitalization": False,
-    "devices": {
-        "kitchen_light": {
-            "mqtt_name": "kitchenlight",
-            "sensor": ""
-        },
-        "sensor_device": {
-            "mqtt_name": "sensordevice",
-            "sensor": "SI7021"
-        }
-    },
-    "lang_specifics": {
-        "decimal_char": ".",
-        "ON": "on",
-        "OFF": "off",
-        "1": "on",
-        "0": "off",
-        "timer_specifics": {
-            "single_days": [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-            ],
-            "days_repeat": [
-                "Sundays",
-                "Mondays",
-                "Tuesdays",
-                "Wednesdays",
-                "Thursdays",
-                "Fridays",
-                "Saturdays"
-            ],
-            "day_groups": {
-                "1000001": "weekend",
-                "0111110": "Monday to Frisay",
-                "0111111": "workdays Monday to Saturday",
-                "1111111": "daily"
-            },
-            "timer_repetition": [
-                "no, one time",
-                "yes"
-            ]
-        }
-    },
     "log_level": "WARNING"
 }
 global line
 line = None
 
-class TasmotaMqttDE(OVOSSkill):
+class TasmotaMQTT(OVOSSkill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # be aware that below is executed after `initialize`

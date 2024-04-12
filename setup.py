@@ -6,13 +6,13 @@ from os import walk, path
 
 # TODO update this info!
 # Define package information
-SKILL_CLAZZ = "TasmotaMqttDE"  # Make sure it matches __init__.py class name
+SKILL_CLAZZ = "TasmotaMQTT"  # Make sure it matches __init__.py class name
 VERSION = "0.0.1"
-URL = "https://github.com/JoergZ2/my-tasmota-de-skill"
+URL = "https://github.com/JoergZ2/ovos-skill-my-tasmota-mqtt"
 AUTHOR = "JoergZ2"
 EMAIL = ""
 LICENSE = "Apache2.0"
-DESCRIPTION = "Skill for IoT devices controlled by MQTT"
+DESCRIPTION = "Skill for Tasmota IoT devices controlled by MQTT"
 
 PYPI_NAME = URL.split("/")[-1]  # pip install PYPI_NAME
 
