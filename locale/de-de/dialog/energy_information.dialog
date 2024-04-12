@@ -1,0 +1,1 @@
+Die Spannung beträgt {enrg_voltage} Volt, der aktuelle Stromverbrauch liegt bei {enrg_current} Kilowattsunden, der Verbrauch heute sind {enrg_today} Kilowattstunden, insgsamt sind {enrg_total} Kilowattstunden verbraucht worden.

@@ -1,0 +1,9 @@
+__init__.py
+setup.py
+version.py
+my_tasmota_de_skill.egg-info/PKG-INFO
+my_tasmota_de_skill.egg-info/SOURCES.txt
+my_tasmota_de_skill.egg-info/dependency_links.txt
+my_tasmota_de_skill.egg-info/entry_points.txt
+my_tasmota_de_skill.egg-info/requires.txt
+my_tasmota_de_skill.egg-info/top_level.txt

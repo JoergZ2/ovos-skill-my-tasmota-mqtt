@@ -1,0 +1,3 @@
+[ovos.plugin.skill]
+my-tasmota-de-skill.joergz2=my_tasmota_de_skill:TasmotaMqttDE
+

@@ -1,0 +1,138 @@
+{
+    "__mycroft_skill_firstrun": false,
+    "user": "admin",
+    "password": "joker",
+    "mqtthost": "192.168.178.20",
+    "mqttport": 1883,
+    "tasmota_mqtt_modus": "homeassistant",
+    "capitalization": true,
+    "devices": {
+        "werkstatt_radio": {
+            "ip": "192.168.178.60",
+            "mqtt_name": "Werkstattradio",
+            "sensor": ""
+        },
+        "werkstattradio": {
+            "ip": "192.168.178.60",
+            "mqtt_name": "Werkstattradio",
+            "sensor": ""
+        },
+        "außenthermometer": {
+            "ip": "192.168.178.68",
+            "mqtt_name": "Außenthermometer",
+            "sensor": "SI7021"
+        },
+        "durchgang": {
+            "ip": "192.168.178.68",
+            "mqtt_name": "Außenthermometer",
+            "sensor": "SI7021"
+        },
+        "schuppen": {
+            "ip": "192.168.178.68",
+            "mqtt_name": "Außenthermometer",
+            "sensor": "SI7021"
+        },
+        "aussenthermometer": {
+            "ip": "192.168.178.68",
+            "mqtt_name": "Außenthermometer",
+            "sensor": "SI7021"
+        },
+        "schalter": {
+            "ip": "192.168.178.66",
+            "mqtt_name": "Schalter",
+            "sensor": "DHT11"
+        },
+        "weihnachtsstern": {
+            "ip": "192.168.178.64",
+            "mqtt_name": "Weihnachtsstern",
+            "sensor": ""
+        },
+        "weihnachtstern": {
+            "ip": "192.168.178.64",
+            "mqtt_name": "Weihnachtsstern",
+            "sensor": ""
+        },
+        "drucker": {
+            "ip": "192.168.178.59",
+            "mqtt_name": "Drucker",
+            "sensor": ""
+        },
+        "stromzähler 1": {
+            "ip": "192.168.178.67",
+            "mqtt_name": "Messpunkt_1",
+            "sensor": ""
+        },
+        "stromzähler1": {
+            "ip": "192.168.178.67",
+            "mqtt_name": "Messpunkt_1",
+            "sensor": ""
+        },
+        "stromzähler_1": {
+            "ip": "192.168.178.67",
+            "mqtt_name": "Messpunkt_1",
+            "sensor": ""
+        },
+        "stromzähler 2": {
+            "ip": "192.168.178.69",
+            "mqtt_name": "Stromzähler_2",
+            "sensor": ""
+        },
+        "stromzähler2": {
+            "ip": "192.168.178.69",
+            "mqtt_name": "Stromzähler_2",
+            "sensor": ""
+        },
+        "stromzähler_2": {
+            "ip": "192.168.178.69",
+            "mqtt_name": "Stromzähler_2",
+            "sensor": ""
+        },
+        "multischalter": {
+            "ip": "192.168.178.70",
+            "mqtt_name": "Multischalter",
+            "sensor": ""
+        },
+        "stall": {
+            "ip": "192.168.178.73",
+            "mqtt_name": "Stall",
+            "sensor": ""
+        }
+    },
+    "lang_specifics": {
+        "decimal_char": ",",
+        "ON": "an",
+        "OFF": "aus",
+        "1": "an",
+        "0": "aus",
+        "timer_specifics": {
+            "single_days": [
+                "Sonntag",
+                "Montag",
+                "Dienstag",
+                "Mittwoch",
+                "Donnerstag",
+                "Freitag",
+                "Samstag"
+            ],
+            "days_repeat": [
+                "sonntags",
+                "montags",
+                "mittwochs",
+                "donnerstags",
+                "freitags",
+                "samstags"
+            ],
+            "day_groups": {
+                "1000001": "Wochenende",
+                "0111110": "Montag bis Freitag",
+                "0111111": "Werktage Montag bis Samstag",
+                "1111111": "jeden Tag"
+            },
+            "timer_repetition": [
+                "nein, einmalig",
+                "ja "
+            ]
+        }
+    },
+    "log_level": "WARNING"
+}

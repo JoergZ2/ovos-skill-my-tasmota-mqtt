@@ -1,0 +1,1 @@
+Timer {timer_nr}, Uhrzeit: {timer_time}, Aktion {timer_action}schalten, Tage {days}, Wiederholung {timer_repeat}; 
