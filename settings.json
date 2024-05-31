@@ -1,49 +1,38 @@
-Wichtiger Hinweis: JSON kennt keine Kommentare. Wenn hier das Zeichen # für Kommentare verwendet wird, dann dient dies nur der inhaltlichen Erläuterung. Bitte auf keinen Fall Kommentare in die JSON-Datei einfügen!!!
-
-
 {
-    "__mycroft_skill_firstrun": false, #OVOS Standard-Konfiguration
-    "user": "admin", # wird nur für HTTP-Version gebraucht, falls ein Benutzer/Passwort für die Weboberfläche gesetzt ist
-    "password": "joker", # siehe oben
-    "mqtthost": "192.168.178.20", # IP des MQTT Brokers
-    "mqttport": 1883, # Port des MQTT Brokers
-    "tasmota_mqtt_modus": "homeassistant", #Modus %prefix%/%topic%/ oder /%topic%/%prefix%/
-    "capitalization": true, # wenn topics Großbuchstaben am Anfang verwenden
-     # devices ist der Abschnitt, in dem alle Geräte aufgelistet werden müssen. Jenachdem welcher STT Service verwendet wird
-     # ist die textliche Darstellung von gesprochenen Worten sehr unterschiedlich, insbesondere bei zusammengesetzten
-     # Begriffen oder bei Geräten, die nur durch einen Zähler voneinander unterschieden sind.
-     # Beispiel: Das Wort Werkstattradio wird von STT Servern sehr unterschiedlichumgesetzt - Werkstattradio, werkstattradio
-     # werkstatt radio, werkstatt-radio (und mit wechselnder Groß und Kleinschreibung. Da muss man sich das voice.log anschauen,
-     # wie der gewählte STT Dienst die Bezeichnungen umsetzt.
-     # Es kann auch sein, dass für ein und dasselbe Gerät verschieden Namen verwendet werden sollen oder können.
-     # Für jede Variante vorkommende Variante muss ein Eintrag angelegt werden.
-    "devices": { # Beginn devices dictionary
-            "werkstatt_radio": { # STT Output 1 
-            "ip": "192.168.178.60", # IP erforderlich für HTTP Steuerung (oder Hostname)
-            "mqtt_name": "Werkstattradio", # MQTT-Name, erforderlich für MQTT Steuerung
-            "sensor": "" # falls ein Sensor vorhanden, Sensorbezeichnung angeben
-        },
-        "werkstattradio": { #STT Output 2
+    "__mycroft_skill_firstrun": false,
+    "user": "admin",
+    "password": "joker",
+    "mqtthost": "192.168.178.20",
+    "mqttport": 1883,
+    "tasmota_mqtt_modus": "homeassistant",
+    "capitalization": true,
+    "devices": {
+        "werkstatt_radio": {
             "ip": "192.168.178.60",
             "mqtt_name": "Werkstattradio",
             "sensor": ""
         },
-        "außenthermometer": { #Namensvariante 1... / STT Output 1
-            "ip": "192.168.178.68",
-            "mqtt_name": "Außenthermometer",
-            "sensor": "SI7021" # Name eines angeschlossenen Temperatur und Luftfeuchtigskeitsensors
+        "werkstattradio": {
+            "ip": "192.168.178.60",
+            "mqtt_name": "Werkstattradio",
+            "sensor": ""
         },
-        "durchgang": { #Namensvariante 2...
-            "ip": "192.168.178.68",
-            "mqtt_name": "Außenthermometer",
-            "sensor": "SI7021"
-        },
-        "schuppen": { #Namensvariante 3...
+        "außenthermometer": {
             "ip": "192.168.178.68",
             "mqtt_name": "Außenthermometer",
             "sensor": "SI7021"
         },
-        "aussenthermometer": {# STT Output 2
+        "durchgang": {
+            "ip": "192.168.178.68",
+            "mqtt_name": "Außenthermometer",
+            "sensor": "SI7021"
+        },
+        "schuppen": {
+            "ip": "192.168.178.68",
+            "mqtt_name": "Außenthermometer",
+            "sensor": "SI7021"
+        },
+        "aussenthermometer": {
             "ip": "192.168.178.68",
             "mqtt_name": "Außenthermometer",
             "sensor": "SI7021"
@@ -68,17 +57,17 @@ Wichtiger Hinweis: JSON kennt keine Kommentare. Wenn hier das Zeichen # für Kom
             "mqtt_name": "Drucker",
             "sensor": ""
         },
-        "stromzähler 1": { # STT-Variante 1
+        "stromzähler 1": {
             "ip": "192.168.178.67",
             "mqtt_name": "Messpunkt_1",
             "sensor": ""
         },
-        "stromzähler1": {# STT Variante 2
+        "stromzähler1": {
             "ip": "192.168.178.67",
             "mqtt_name": "Messpunkt_1",
             "sensor": ""
         },
-        "stromzähler_1": { # hart codierte Variante, diee Leerzeichen durch '_' ersetzt
+        "stromzähler_1": {
             "ip": "192.168.178.67",
             "mqtt_name": "Messpunkt_1",
             "sensor": ""
@@ -109,15 +98,12 @@ Wichtiger Hinweis: JSON kennt keine Kommentare. Wenn hier das Zeichen # für Kom
             "sensor": ""
         }
     },
-    # In diesem Abschnitt werden bestimmte Zeichen und Begriffe in die entsprechenden Ausdrücke der gewählten Sprache umgesetzt bzw. Übersetzungen verwendet
     "lang_specifics": {
-        "decimal_char": ",", # Ersetzung des Dezimalpunktes durch Dezimalkomma
-        "ON": "an", # Übersetzung
-        "OFF": "aus", # Übersetzung
-        "1": "an", # ON kann auch durch 1 repräsentiert sein
-        "0": "aus", # OFF kann auch durch 0 repräsentiert sein
-         # Tage werden in Tasmota durch eine 7-stellige Zahl repräsentiert. Die erste Position ist der Sonntag.
-         # Die nachfolgende Liste single:days benutzt die Position als Index: Pos. 0 = Sonntag
+        "decimal_char": ",",
+        "ON": "an",
+        "OFF": "aus",
+        "1": "an",
+        "0": "aus",
         "timer_specifics": {
             "single_days": [
                 "Sonntag",
@@ -128,7 +114,7 @@ Wichtiger Hinweis: JSON kennt keine Kommentare. Wenn hier das Zeichen # für Kom
                 "Freitag",
                 "Samstag"
             ],
-            "days_repeat": [ #Sprachvariante für jeden Sonntag, jeden Montag....
+            "days_repeat": [
                 "sonntags",
                 "montags",
                 "mittwochs",
@@ -136,17 +122,17 @@ Wichtiger Hinweis: JSON kennt keine Kommentare. Wenn hier das Zeichen # für Kom
                 "freitags",
                 "samstags"
             ],
-            "day_groups": { #bestimmte Blöcke von Tagen haben eigene Namen
+            "day_groups": {
                 "1000001": "Wochenende",
                 "0111110": "Montag bis Freitag",
                 "0111111": "Werktage Montag bis Samstag",
                 "1111111": "jeden Tag"
             },
-            "timer_repetition": [ # Antworten für einmaligen Timer oder wiederholten Timer
+            "timer_repetition": [
                 "nein, einmalig",
                 "ja "
             ]
         }
     },
-    "log_level": "WARNING"
+    "log_level": "INFO"
 }

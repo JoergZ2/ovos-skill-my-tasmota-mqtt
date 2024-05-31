@@ -45,6 +45,7 @@ class TasmotaMQTT(OVOSSkill):
         self.mqttport = self.settings.get("mqttport", 1883)
         self.devices = self.settings.get("devices")
         self.lang_specifics = self.settings.get("lang_specifics")
+        LOG.info(str(self.lang_specifics))
         self.tasmota_mqtt_modus = self.settings.get("tasmota_mqtt_modus", "default")
         self.day_groups = self.lang_specifics["timer_specifics"]["day_groups"]
         self.single_days = self.lang_specifics["timer_specifics"]["single_days"]
@@ -221,6 +222,18 @@ class TasmotaMQTT(OVOSSkill):
         self.handle_mqtt_connection(mqtt_cmd, command_action, subscribe_str, device)
 
     #intents
+#    @intent_handler("favorites.on.intent")
+#    def favorites_on_intent(self,message):
+#        sess = SessionManager.get(message)
+#        self.dialog_to_speak = None
+#        self.event = Event()
+#        device = message.data.get('device').lower().replace(' ','_')
+#        command = "Power4"
+#        command_action = "1"
+#        self.execute_mqtt(device,command,command_action,line)
+#        self.event.wait()
+#        self.speak_dialog(self.dialog_to_speak)
+#
     @intent_handler("power.on.intent")
     def power_on_intent(self,message):
         sess = SessionManager.get(message)

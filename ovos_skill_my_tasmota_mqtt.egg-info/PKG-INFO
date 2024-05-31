@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: ovos-skill-my-tasmota-mqtt
+Version: 0.0.1
+Summary: Skill for Tasmota IoT devices controlled by MQTT
+Home-page: https://github.com/JoergZ2/ovos-skill-my-tasmota-mqtt
+Author: JoergZ2
+Author-email: UNKNOWN
+License: Apache2.0
+Description: UNKNOWN
+Keywords: ovos skill plugin
+Platform: UNKNOWN
