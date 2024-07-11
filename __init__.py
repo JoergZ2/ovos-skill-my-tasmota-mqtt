@@ -41,17 +41,16 @@ class TasmotaMQTT(OVOSSkill):
         self.settings.merge(DEFAULT_SETTINGS, new_only=True)
         self.settings_change_callback = self.on_settings_changed
         #from joergz2
-        self.mqtthost = self.settings.get("mqtthost")
+        self.mqtthost = self.settings.get("mqtthost", "localhost")
         self.mqttport = self.settings.get("mqttport", 1883)
-        self.devices = self.settings.get("devices")
-        self.lang_specifics = self.settings.get("lang_specifics")
-        LOG.info(str(self.lang_specifics))
+        self.devices = self.settings.get("devices", None)
+        self.lang_specifics = self.settings.get("lang_specifics", None)
         self.tasmota_mqtt_modus = self.settings.get("tasmota_mqtt_modus", "default")
-        self.day_groups = self.lang_specifics["timer_specifics"]["day_groups"]
-        self.single_days = self.lang_specifics["timer_specifics"]["single_days"]
-        self.timer_repetition = self.lang_specifics["timer_specifics"]["timer_repetition"]
+        if self.lang_specifics:
+            self.day_groups = self.lang_specifics["timer_specifics"]["day_groups"]
+            self.single_days = self.lang_specifics["timer_specifics"]["single_days"]
+            self.timer_repetition = self.lang_specifics["timer_specifics"]["timer_repetition"]
         self.capitalization = self.settings.get("capitalization", False)
-        #LOG.info("Settings: " + str(self.day_groups))
 
     def on_settings_changed(self):
         """This method is called when the skill settings are changed."""
