@@ -1,6 +1,5 @@
 from ovos_utils import classproperty
 from ovos_utils.log import LOG
-#from ovos_utils.intents import IntentBuilder
 from ovos_utils.process_utils import RuntimeRequirements
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.skills import OVOSSkill
@@ -11,7 +10,56 @@ import json
 import paho.mqtt.client as mqtt
 
 DEFAULT_SETTINGS = {
-    "log_level": "WARNING"
+    "__mycroft_skill_firstrun": "False",
+    "mqtthost": "IP.OF.MQTT.SERVER",
+    "mqttport": 1883,
+    "tasmota_mqtt_modus": "default",
+    "capitalization": "True",
+    "devices": {
+        "device_01": {
+            "ip": "IP.OF.TASMOTA.DEVICE",
+            "mqtt_name": "mqtt name",
+            "sensor": ""
+        }
+    },
+    "lang_specifics": {
+        "decimal_char": ".",
+        "ON": "on",
+        "OFF": "off",
+        "1": "on",
+        "0": "off",
+        "timer_specifics": {
+            "single_days": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ],
+            "days_repeat": [
+                "sundays",
+                "mondays",
+                "tuesdays",
+                "wednesdays",
+                "thursdays",
+                "fridays",
+                "saturdays"
+            ],
+            "day_groups": {
+                "1000001": "Weekend",
+                "0111110": "Monday to Friday",
+                "0111111": "working days Monday to Saturday",
+                "1111111": "every day"
+            },
+            "timer_repetition": [
+                "no, one time ",
+                "yes "
+            ]
+        }
+    },
+    "log_level": "INFO"
 }
 global line
 line = None

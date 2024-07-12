@@ -1,3 +1,2 @@
 [ovos.plugin.skill]
-ovos-skill-my-tasmota-mqtt.joergz2=ovos_skill_my_tasmota_mqtt:TasmotaMQTT
-
+ovos-skill-my-tasmota-mqtt.joergz2 = ovos_skill_my_tasmota_mqtt:TasmotaMQTT
