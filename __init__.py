@@ -11,6 +11,7 @@ import paho.mqtt.client as mqtt
 
 DEFAULT_SETTINGS = {
     "__mycroft_skill_firstrun": "False",
+    "protocol": "mqtt",
     "mqtthost": "IP.OF.MQTT.SERVER",
     "mqttport": 1883,
     "tasmota_mqtt_modus": "default",
@@ -268,6 +269,14 @@ class TasmotaMQTT(OVOSSkill):
             subscribe_str = "stat/+/#"
         self.handle_mqtt_connection(mqtt_cmd, command_action, subscribe_str, device)
 
+    def execute_http(self, device_ip, command, option):
+        address = "http://" + str(device_ip) + "/cm?&user=" + self.user + "&password=" + self.password + "&cmnd=" + str(command) + " " + str(option)
+        response = self.http.request('GET', address)
+        data = response.data
+        values = json.loads(data)
+        return values
+
+    
     #intents
 #    @intent_handler("favorites.on.intent")
 #    def favorites_on_intent(self,message):

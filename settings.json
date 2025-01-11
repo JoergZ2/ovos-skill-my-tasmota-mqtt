@@ -1,5 +1,6 @@
 {
     "__mycroft_skill_firstrun": false,
+    "protocol": "mqtt",
     "user": "admin",
     "password": "joker",
     "mqtthost": "192.168.178.20",
