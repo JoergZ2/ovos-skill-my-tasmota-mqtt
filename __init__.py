@@ -131,6 +131,7 @@ class TasmotaMQTT(OVOSSkill):
         device_wrong = device
         if device in self.aliases:
             device = {"dev_name": device, "mqtt_name": self.aliases[device]['mqtt_name'], "line": self.aliases[device]['line'], "sensor": self.aliases[device]['sensor']}
+            LOG.info("Device aus check: " +str(device))
             return device
         if device in self.devices:
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor']}
