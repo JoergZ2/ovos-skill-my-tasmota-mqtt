@@ -276,6 +276,7 @@ class TasmotaMQTT(OVOSSkill):
         self.mqttc.disconnect()
 
     def execute_mqtt(self,device,command,command_action,line=None):
+        LOG.info("Info aus execute: " +str(device) +", " + str(line))
         mqtt_name = device['mqtt_name']
         #if self.capitalization:
             #device =  device.capitalize()
