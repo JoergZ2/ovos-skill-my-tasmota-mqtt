@@ -26,19 +26,19 @@ DEFAULT_SETTINGS = {
     "aliases": {
         "computer": {
             "ip": "192.168.178.70",
-            "mqtt_name": "multischalter",
+            "mqtt_name": "Multischalter",
             "line": "1",
             "sensor": ""
         },
         "zusatzbildschirm": {
             "ip": "192.168.178.70",
-            "mqtt_name": "multischalter",
+            "mqtt_name": "Multischalter",
             "line": "3",
             "sensor": ""
         },
         "zusatzgeräte": {
             "ip": "192.168.178.70",
-            "mqtt_name": "multischalter",
+            "mqtt_name": "Multischalter",
             "line": "4",
             "sensor": ""
         }
@@ -266,7 +266,7 @@ class TasmotaMQTT(OVOSSkill):
 
 #MQTT Execution
     def handle_mqtt_connection(self, mqtt_cmd, command_action, subscribe_str, device):
-        LOG.info("Mqtt_connectio: " +str(mqtt_cmd) + ", Command_cation: " + str(command_action))
+        LOG.info("Mqtt_connection: " +str(mqtt_cmd) + ", Command_action: " + str(command_action))
         self.mqttc = mqtt.Client("Ovos")
         self.mqttc.connect(self.mqtthost,self.mqttport)
         self.mqttc.on_message = self.on_message
