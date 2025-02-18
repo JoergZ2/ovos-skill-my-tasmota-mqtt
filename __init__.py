@@ -266,6 +266,7 @@ class TasmotaMQTT(OVOSSkill):
 
 #MQTT Execution
     def handle_mqtt_connection(self, mqtt_cmd, command_action, subscribe_str, device):
+        LOG.info("Mqtt_connectio: " +str(mqtt_cmd) + ", Command_cation: " + str(command_action))
         self.mqttc = mqtt.Client("Ovos")
         self.mqttc.connect(self.mqtthost,self.mqttport)
         self.mqttc.on_message = self.on_message
