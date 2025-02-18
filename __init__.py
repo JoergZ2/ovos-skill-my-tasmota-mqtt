@@ -114,6 +114,7 @@ class TasmotaMQTT(OVOSSkill):
         self.mqttport = self.settings.get("mqttport", 1883)
         self.devices = self.settings.get("devices", None)
         self.aliases = self.settings.get("aliases", None)
+        LOG.info("From inititalize: " +str(self.aliases))
         self.lang_specifics = self.settings.get("lang_specifics", None)
         self.tasmota_mqtt_modus = self.settings.get("tasmota_mqtt_modus", "default")
         if self.lang_specifics:
