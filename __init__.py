@@ -323,6 +323,7 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
+        LOG.info("From intent power.on: " +str(device))
         if device['line']:
             line = device['line']
         if not device['line']:
