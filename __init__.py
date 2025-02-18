@@ -23,6 +23,26 @@ DEFAULT_SETTINGS = {
             "sensor": ""
         }
     },
+    "aliases": {
+        "computer": {
+            "ip": "192.168.178.70",
+            "mqtt_name": "multischalter",
+            "line": "1",
+            "sensor": ""
+        },
+        "zusatzbildschirm": {
+            "ip": "192.168.178.70",
+            "mqtt_name": "multischalter",
+            "line": "3",
+            "sensor": ""
+        },
+        "zusatzgeräte": {
+            "ip": "192.168.178.70",
+            "mqtt_name": "multischalter",
+            "line": "4",
+            "sensor": ""
+        }
+    },
     "lang_specifics": {
         "decimal_char": ".",
         "ON": "on",
@@ -93,6 +113,7 @@ class TasmotaMQTT(OVOSSkill):
         self.mqtthost = self.settings.get("mqtthost", "localhost")
         self.mqttport = self.settings.get("mqttport", 1883)
         self.devices = self.settings.get("devices", None)
+        self.aliases = self.settings.get("aliases", None)
         self.lang_specifics = self.settings.get("lang_specifics", None)
         self.tasmota_mqtt_modus = self.settings.get("tasmota_mqtt_modus", "default")
         if self.lang_specifics:
@@ -108,6 +129,9 @@ class TasmotaMQTT(OVOSSkill):
     #checks before executing
     def check_device_exists(self, device):
         device_wrong = device
+        if device in self.aliases:
+            device = {"dev_name": device, "mqtt_name": self.aliases[device]['mqtt_name'], "line": self.aliases[device]['line'], "sensor": self.aliases[device]['sensor']}
+            return device
         if device in self.devices:
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor']}
             return device
@@ -297,7 +321,10 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
-        line = message.data.get('line','1')
+        if device['line']:
+            line = device['line']
+        if not device['line']:
+            line = message.data.get('line','1')
         command = "Power"
         command_action = "1"
         self.execute_mqtt(device,command,command_action,line)
