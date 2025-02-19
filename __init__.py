@@ -329,7 +329,7 @@ class TasmotaMQTT(OVOSSkill):
         device = self.check_device_exists(device)
         if device['line']:
             line = device['line']
-        else not device['line']:
+        else:
             line = message.data.get('line','1')
         command = "Power"
         command_action = "0"
