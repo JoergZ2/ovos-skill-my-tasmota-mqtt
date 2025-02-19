@@ -303,18 +303,6 @@ class TasmotaMQTT(OVOSSkill):
 
     
     #intents
-#    @intent_handler("favorites.on.intent")
-#    def favorites_on_intent(self,message):
-#        sess = SessionManager.get(message)
-#        self.dialog_to_speak = None
-#        self.event = Event()
-#        device = message.data.get('device').lower().replace(' ','_')
-#        command = "Power4"
-#        command_action = "1"
-#        self.execute_mqtt(device,command,command_action,line)
-#        self.event.wait()
-#        self.speak_dialog(self.dialog_to_speak)
-#
     @intent_handler("power.on.intent")
     def power_on_intent(self,message):
         sess = SessionManager.get(message)
@@ -357,6 +345,10 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
+        if device['line']:
+            line = device['line']
+        if not device['line']:
+            line = message.data.get('line','1')
         command = "Status"
         command_action = ""
         self.execute_mqtt(device,command,command_action,line)
