@@ -113,9 +113,7 @@ class TasmotaMQTT(OVOSSkill):
         self.mqtthost = self.settings.get("mqtthost", "localhost")
         self.mqttport = self.settings.get("mqttport", 1883)
         self.devices = self.settings.get("devices", None)
-        LOG.info("Devices from inititalize: " +str(self.devices))
         self.nicknames = self.settings.get("nicknames", None)
-        LOG.info("nicknames from inititalize: " +str(self.nicknames))
         self.lang_specifics = self.settings.get("lang_specifics", None)
         self.tasmota_mqtt_modus = self.settings.get("tasmota_mqtt_modus", "default")
         if self.lang_specifics:
@@ -324,7 +322,6 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
-        LOG.info("From intent power.on: " +str(device))
         if device['line']:
             line = device['line']
         if not device['line']:
@@ -342,7 +339,10 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
-        line = message.data.get('line','1')
+        if device['line']:
+            line = device['line']
+        if not device['line']:
+            line = message.data.get('line','1')
         command = "Power"
         command_action = "0"
         self.execute_mqtt(device,command,command_action,line)
