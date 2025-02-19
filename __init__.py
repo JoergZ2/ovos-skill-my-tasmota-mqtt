@@ -327,7 +327,7 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
-        if device['line']:
+        if "line" in device:
             line = device['line']
         else:
             line = message.data.get('line','1')
