@@ -23,7 +23,7 @@ DEFAULT_SETTINGS = {
             "sensor": ""
         }
     },
-    "aliases": {
+    "nicknames": {
         "computer": {
             "ip": "192.168.178.70",
             "mqtt_name": "Multischalter",
@@ -114,8 +114,8 @@ class TasmotaMQTT(OVOSSkill):
         self.mqttport = self.settings.get("mqttport", 1883)
         self.devices = self.settings.get("devices", None)
         LOG.info("Devices from inititalize: " +str(self.devices))
-        self.aliases = self.settings.get("aliases", None)
-        LOG.info("Aliases from inititalize: " +str(self.aliases))
+        self.nicknames = self.settings.get("nicknames", None)
+        LOG.info("nicknames from inititalize: " +str(self.nicknames))
         self.lang_specifics = self.settings.get("lang_specifics", None)
         self.tasmota_mqtt_modus = self.settings.get("tasmota_mqtt_modus", "default")
         if self.lang_specifics:
@@ -131,8 +131,8 @@ class TasmotaMQTT(OVOSSkill):
     #checks before executing
     def check_device_exists(self, device):
         device_wrong = device
-        if device in self.aliases:
-            device = {"dev_name": device, "mqtt_name": self.aliases[device]['mqtt_name'], "line": self.aliases[device]['line'], "sensor": self.aliases[device]['sensor']}
+        if device in self.nicknames:
+            device = {"dev_name": device, "mqtt_name": self.nicknames[device]['mqtt_name'], "line": self.nicknames[device]['line'], "sensor": self.nicknames[device]['sensor']}
             return device
         if device in self.devices:
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor']}
