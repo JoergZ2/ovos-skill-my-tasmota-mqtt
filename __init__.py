@@ -132,7 +132,6 @@ class TasmotaMQTT(OVOSSkill):
         device_wrong = device
         if device in self.aliases:
             device = {"dev_name": device, "mqtt_name": self.aliases[device]['mqtt_name'], "line": self.aliases[device]['line'], "sensor": self.aliases[device]['sensor']}
-            LOG.info("Device aus check: " +str(device))
             return device
         if device in self.devices:
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor']}
@@ -268,7 +267,6 @@ class TasmotaMQTT(OVOSSkill):
 
 #MQTT Execution
     def handle_mqtt_connection(self, mqtt_cmd, command_action, subscribe_str, device):
-        LOG.info("Mqtt_connection: " +str(mqtt_cmd) + ", Command_action: " + str(command_action))
         self.mqttc = mqtt.Client("Ovos")
         self.mqttc.connect(self.mqtthost,self.mqttport)
         self.mqttc.on_message = self.on_message
