@@ -310,9 +310,9 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
-        if device['line']:
+        if "line" in device:
             line = device['line']
-        if not device['line']:
+        else:
             line = message.data.get('line','1')
         command = "Power"
         command_action = "1"
@@ -345,9 +345,9 @@ class TasmotaMQTT(OVOSSkill):
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
         device = self.check_device_exists(device)
-        if device['line']:
+        if "line" in device:
             line = device['line']
-        if not device['line']:
+        else:
             line = message.data.get('line','1')
         command = "Status"
         command_action = ""
