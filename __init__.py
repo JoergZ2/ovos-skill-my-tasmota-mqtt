@@ -130,10 +130,10 @@ class TasmotaMQTT(OVOSSkill):
     def check_device_exists(self, device):
         device_wrong = device
         if device in self.nicknames:
-            device = {"dev_name": device, "mqtt_name": self.nicknames[device]['mqtt_name'], "line": self.nicknames[device]['line'], "sensor": self.nicknames[device]['sensor']}
+            device = self.nicknames[device]['mqtt_name']
             return device
         if device in self.devices:
-            device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor']}
+            device = self.devices[device]['mqtt_name']
             return device
         else:
             LOG.info("Device " + str(device_wrong) + " not found in devices.")
