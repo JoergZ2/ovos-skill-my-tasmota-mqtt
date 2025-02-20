@@ -361,6 +361,7 @@ class TasmotaMQTT(OVOSSkill):
         self.dialog_to_speak = None
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
+        LOG.info("Device from sensor_intent: " + str(device))
         device = self.check_device_exists(device)
         if "line" in device:
             line = device['line']
