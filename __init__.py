@@ -25,22 +25,16 @@ DEFAULT_SETTINGS = {
     },
     "nicknames": {
         "computer": {
-            "ip": "192.168.178.70",
-            "mqtt_name": "Multischalter",
-            "line": "1",
-            "sensor": ""
+            "realname": "multischalter",
+            "line": "1"
         },
         "zusatzbildschirm": {
-            "ip": "192.168.178.70",
-            "mqtt_name": "Multischalter",
-            "line": "3",
-            "sensor": ""
+            "realname": "multischalter",
+            "line": "3"
         },
         "zusatzgeräte": {
-            "ip": "192.168.178.70",
-            "mqtt_name": "Multischalter",
-            "line": "4",
-            "sensor": ""
+            "realname": "multischalter",
+            "line": "4"
         }
     },
     "lang_specifics": {
@@ -130,10 +124,12 @@ class TasmotaMQTT(OVOSSkill):
     def check_device_exists(self, device):
         device_wrong = device
         if device in self.nicknames:
-            device = self.nicknames[device]['mqtt_name']
+            line = self.nicknames[device]['line']
+            device = self.nicknames[device]['realname']
+            device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip'], "line": line}
             return device
         if device in self.devices:
-            device = self.devices[device]['mqtt_name']
+            device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip']}
             return device
         else:
             LOG.info("Device " + str(device_wrong) + " not found in devices.")
