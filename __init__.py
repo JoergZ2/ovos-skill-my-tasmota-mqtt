@@ -368,6 +368,7 @@ class TasmotaMQTT(OVOSSkill):
             line = message.data.get('line','1')
         command = "Status"
         command_action = "10"
+        LOG.info("From sensor_intent: " +str(device) +", " +str(command) + ", " +str(command_action))
         self.execute_mqtt(device,command,command_action)
         self.event.wait()
         self.speak_dialog(self.dialog_to_speak)
