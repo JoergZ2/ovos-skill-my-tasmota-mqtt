@@ -288,6 +288,7 @@ class TasmotaMQTT(OVOSSkill):
             else:
                 mqtt_cmd = "cmnd/" + mqtt_name +"/" + command
             subscribe_str = "stat/+/#"
+        LOG.info("From execute end: " + str(mqtt_cmd))
         self.handle_mqtt_connection(mqtt_cmd, command_action, subscribe_str, device)
 
     def execute_http(self, device_ip, command, option):
