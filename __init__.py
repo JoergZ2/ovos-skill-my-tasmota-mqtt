@@ -123,8 +123,6 @@ class TasmotaMQTT(OVOSSkill):
 #Helpers
     #checks before executing
     def check_device_exists(self, device):
-        LOG.info("Device von check_device ist: " + str(device))
-        LOG.info("Nicknames: " + str(self.nicknames))
         device_wrong = device
         if device in self.nicknames:
             line = self.nicknames[device]['line']
