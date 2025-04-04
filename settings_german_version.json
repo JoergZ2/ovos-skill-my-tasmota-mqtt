@@ -3,7 +3,7 @@
     "protocol": "mqtt",
     "user": "admin",
     "password": "joker",
-    "mqtthost": "IP.OF.MQTT.HOST",
+    "mqtthost": "IP.DES.MQTT.HOSTS",
     "mqttport": 1883,
     "tasmota_mqtt_modus": "homeassistant",
     "capitalization": true,
@@ -27,38 +27,38 @@
     },
     "lang_specifics": {
         "decimal_char": ",",
-        "ON": "on",
-        "OFF": "off",
-        "1": "on",
-        "0": "off",
+        "ON": "an",
+        "OFF": "aus",
+        "1": "an",
+        "0": "aus",
         "timer_specifics": {
             "single_days": [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
+                "Sonntag",
+                "Montag",
+                "Dienstag",
+                "Mittwoch",
+                "Donnerstag",
+                "Freitag",
+                "Samstag"
             ],
             "days_repeat": [
-                "sundays",
-                "mondays",
-                "tuesdays",
-                "wednesdays"
-                "thursdays",
-                "fridays",
-                "saturdays"
+                "sonntags",
+                "montags",
+                "dienstags",
+                "mittwochs",
+                "donnerstags",
+                "freitags",
+                "samstags"
             ],
             "day_groups": {
-                "1000001": "weekend",
-                "0111110": "monday to friday",
-                "0111111": "working days monday to saturday",
-                "1111111": "every day"
+                "1000001": "Wochenende",
+                "0111110": "Montag bis Freitag",
+                "0111111": "Werktage Montag bis Samstag",
+                "1111111": "jeden Tag"
             },
             "timer_repetition": [
-                "no, one time",
-                "yes "
+                "nein, einmalig",
+                "ja "
             ]
         }
     },

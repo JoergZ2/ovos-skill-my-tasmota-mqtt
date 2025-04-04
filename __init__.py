@@ -133,7 +133,7 @@ class TasmotaMQTT(OVOSSkill):
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip']}
             return device
         else:
-            LOG.info("Device " + str(device_wrong) + " not found in devices.")
+            LOG.debug("Device " + str(device_wrong) + " not found in devices.")
             self.speak_dialog('device_error',{'device': device_wrong})
 
     def check_line(self, line):
@@ -235,6 +235,19 @@ class TasmotaMQTT(OVOSSkill):
 
         #Sensor informations
         if "StatusSNS" in values_dict.keys():
+            #solarpower
+            if "MT631" in values_dict["StatusSNS"]:
+                total_in = str(values_dict["StatusSNS"]["MT631"]["Total_in"]).replace('.', self.lang_specifics["decimal_char"])
+                total_out = str(values_dict["StatusSNS"]["MT631"]["Total_out"]).replace('.', self.lang_specifics["decimal_char"])
+                power_cur = str(values_dict["StatusSNS"]["MT631"]["Power_cur"]).replace('.', self.lang_specifics["decimal_char"])
+                if int(power_cur) <= 0:
+                    power_cur = int(power_cur)*(-1)
+                    answer = self.dialog_renderer.render('solar_plus', {'total_out': total_out, "total_in": total_in, "power_cur": power_cur})
+                    return answer
+                if int(power_cur) > 0:
+                    answer = self.dialog_renderer.render('solar_minus', {'total_out': total_out, "total_in": total_in, "power_cur": power_cur})
+                    return answer
+    
             #energy sensor informations
             if "ENERGY" in values_dict["StatusSNS"]:
                 enrg_total = str(values_dict["StatusSNS"]["ENERGY"]["Total"]).replace('.', self.lang_specifics["decimal_char"])
@@ -273,7 +286,7 @@ class TasmotaMQTT(OVOSSkill):
         self.mqttc.disconnect()
 
     def execute_mqtt(self,device,command,command_action,line=None):
-        LOG.info("Info aus execute: " +str(device) +", " + str(line))
+        LOG.debug("Info aus execute: " +str(device) +", " + str(line))
         mqtt_name = device['mqtt_name']
         #if self.capitalization:
             #device =  device.capitalize()
@@ -289,7 +302,7 @@ class TasmotaMQTT(OVOSSkill):
             else:
                 mqtt_cmd = "cmnd/" + mqtt_name +"/" + command
             subscribe_str = "stat/+/#"
-        LOG.info("From execute end: " + str(mqtt_cmd))
+        LOG.debug("From execute end: " + str(mqtt_cmd))
         self.handle_mqtt_connection(mqtt_cmd, command_action, subscribe_str, device)
 
     def execute_http(self, device_ip, command, option):
@@ -359,7 +372,7 @@ class TasmotaMQTT(OVOSSkill):
         self.dialog_to_speak = None
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
-        LOG.info("Device from sensor_intent: " + str(device))
+        LOG.debug("Device from sensor_intent: " + str(device))
         device = self.check_device_exists(device)
         if "line" in device:
             line = device['line']
@@ -367,7 +380,7 @@ class TasmotaMQTT(OVOSSkill):
             line = message.data.get('line','1')
         command = "Status"
         command_action = "10"
-        LOG.info("From sensor_intent: " +str(device) +", " +str(command) + ", " +str(command_action))
+        LOG.debug("From sensor_intent: " +str(device) +", " +str(command) + ", " +str(command_action))
         self.execute_mqtt(device,command,command_action)
         self.event.wait()
         self.speak_dialog(self.dialog_to_speak)
