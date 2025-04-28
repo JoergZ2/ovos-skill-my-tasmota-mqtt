@@ -133,7 +133,7 @@ class TasmotaMQTT(OVOSSkill):
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip']}
             return device
         else:
-            LOG.debug("Device " + str(device_wrong) + " not found in devices.")
+            LOG.debug("From CHECK_DEVICE_EXISTS " + str(device_wrong) + " not found in devices.")
             self.speak_dialog('device_error',{'device': device_wrong})
 
     def check_line(self, line):
@@ -259,6 +259,7 @@ class TasmotaMQTT(OVOSSkill):
             
             #temp and humidity sensor
             if sensor_name != "":
+                LOG.debug("From EVALUATE_VALUES_DICT: " + str(values_dict))
                 temp = str(values_dict["StatusSNS"][sensor_name]["Temperature"]).replace('.', self.lang_specifics["decimal_char"])
                 hum = str(values_dict["StatusSNS"][sensor_name]["Humidity"]).replace('.', self.lang_specifics["decimal_char"])
                 dew = str(values_dict["StatusSNS"][sensor_name]["DewPoint"]).replace('.', self.lang_specifics["decimal_char"])
@@ -286,7 +287,7 @@ class TasmotaMQTT(OVOSSkill):
         self.mqttc.disconnect()
 
     def execute_mqtt(self,device,command,command_action,line=None):
-        LOG.debug("Info aus execute: " +str(device) +", " + str(line))
+        LOG.debug("Info aus EXECUTE_MQTT: " +str(device) +", " + str(line))
         mqtt_name = device['mqtt_name']
         #if self.capitalization:
             #device =  device.capitalize()
@@ -302,7 +303,7 @@ class TasmotaMQTT(OVOSSkill):
             else:
                 mqtt_cmd = "cmnd/" + mqtt_name +"/" + command
             subscribe_str = "stat/+/#"
-        LOG.debug("From execute end: " + str(mqtt_cmd))
+        LOG.debug("From end of EXECUTE_MQTT: " + str(mqtt_cmd))
         self.handle_mqtt_connection(mqtt_cmd, command_action, subscribe_str, device)
 
     def execute_http(self, device_ip, command, option):
@@ -372,7 +373,7 @@ class TasmotaMQTT(OVOSSkill):
         self.dialog_to_speak = None
         self.event = Event()
         device = message.data.get('device').lower().replace(' ','_')
-        LOG.debug("Device from sensor_intent: " + str(device))
+        LOG.debug("Device from FETCH_SENSOR_DATA: " + str(device))
         device = self.check_device_exists(device)
         if "line" in device:
             line = device['line']
@@ -380,7 +381,7 @@ class TasmotaMQTT(OVOSSkill):
             line = message.data.get('line','1')
         command = "Status"
         command_action = "10"
-        LOG.debug("From sensor_intent: " +str(device) +", " +str(command) + ", " +str(command_action))
+        LOG.debug("Command line from  FETCH_SENSOR_DATA: " +str(device) +", " +str(command) + ", " +str(command_action))
         self.execute_mqtt(device,command,command_action)
         self.event.wait()
         self.speak_dialog(self.dialog_to_speak)
@@ -407,6 +408,7 @@ class TasmotaMQTT(OVOSSkill):
             device = splitTopic[0]
         values = str(msg.payload.decode())
         values_dict = json.loads(values)
+        LOG.debug("From ON_MESSAGE: " + str(values_dict))
         self.dialog_to_speak = self.evaluate_values_dict(values_dict,device)
         self.event.set()
         return
