@@ -124,6 +124,17 @@ class TasmotaMQTT(OVOSSkill):
     #checks before executing
     def check_device_exists(self, device):
         device_wrong = device
+        if len(device.split()) > 1:
+            device = device.split()
+            for i in device:
+                if i in self.nicknames:
+                    line = self.nicknames[device]['line']
+                    device = self.nicknames[device]['realname']
+                    device = {"dev_name": i, "mqtt_name": self.devices[i]['mqtt_name'], "sensor": self.devices[i]['sensor'], "ip": self.devices[i]['ip'], "line": line}
+                    return device
+                if i in self.devices:
+                    device = {"dev_name": i, "mqtt_name": self.devices[i]['mqtt_name'], "sensor": self.devices[i]['sensor'], "ip": self.devices[i]['ip']}
+                    return device
         if device in self.nicknames:
             line = self.nicknames[device]['line']
             device = self.nicknames[device]['realname']
