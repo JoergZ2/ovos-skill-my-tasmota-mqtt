@@ -8,7 +8,7 @@ from threading import Event
 import time
 import json
 import paho.mqtt.client as mqtt
-#
+##
 
 DEFAULT_SETTINGS = {
     "__mycroft_skill_firstrun": "False",
