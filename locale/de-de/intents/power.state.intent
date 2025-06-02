@@ -1,4 +1,4 @@
-schaltzustand (von|vom) {device}
+(schaltzustand|zustand) (von|vom) {device}
 wie ist der schaltzustand (von|vom) {device}
 wie ist der zustand (von|vom) {device}
 ist (der | die | das) {device} (angeschaltet|eingeschaltet|ausgeschaltet)

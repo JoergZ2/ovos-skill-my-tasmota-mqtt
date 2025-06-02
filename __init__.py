@@ -366,10 +366,11 @@ class TasmotaMQTT(OVOSSkill):
         sess = SessionManager.get(message)
         self.dialog_to_speak = None
         self.event = Event()
-        device = message.data.get('device').lower().replace(' ','_')
+        device = message.data.get('device') #.lower().replace(' ','_')
         device = self.check_device_exists(device)
-        if "line" in device:
-            line = device['line']
+        LOG.debug("Device: " + str(device))
+        if not 'line' in device:
+            line = "1"
         else:
             line = message.data.get('line','1')
         command = "Status"
