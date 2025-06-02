@@ -1,5 +1,5 @@
+schaltzustand (von|vom) {device}
 wie ist der schaltzustand (von|vom) {device}
 wie ist der zustand (von|vom) {device}
-ist (der | die | das) {device} (eingeschaltet | ausgeschaltet)
-welche leitung (von|vom) {device} ist (angeschaltet | geschaltet)
-was ist an am {device}
+ist (der | die | das) {device} (angeschaltet|eingeschaltet|ausgeschaltet)
+welche leitung (von|vom) {device} ist (eingeschaltet|angeschaltet|geschaltet)
