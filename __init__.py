@@ -123,9 +123,24 @@ class TasmotaMQTT(OVOSSkill):
 #Helpers
     #checks before executing
     def check_device_exists(self, device):
-        device_wrong = device
+        device = device.lower()
+        device_bkup = device
+        LOG.debug("From function check_device_exists: " + str(device))
         if len(device.split()) > 1:
+            LOG.debug("Device has more than one word: " + str(device))
+            device = device_bkup.replace(" ","_")
+            LOG.debug("First check device now is: " +str(device))
+            if device in self.nicknames:
+                line = self.nicknames[device]['line']
+                device = self.nicknames[device]['realname']
+                device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip'], "line": line}
+                return device
+            if device in self.devices:
+                device = {"dev_name": self.devices[device], "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip']}
+                return device
+            device = device_bkup
             device = device.split()
+            LOG.debug("Second check device now is: " +str(device))
             for i in device:
                 if i in self.nicknames:
                     line = self.nicknames[device]['line']
@@ -136,16 +151,18 @@ class TasmotaMQTT(OVOSSkill):
                     device = {"dev_name": i, "mqtt_name": self.devices[i]['mqtt_name'], "sensor": self.devices[i]['sensor'], "ip": self.devices[i]['ip']}
                     return device
         if device in self.nicknames:
+            LOG.debug("Device is in nickname. Check it out.")
             line = self.nicknames[device]['line']
             device = self.nicknames[device]['realname']
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip'], "line": line}
             return device
         if device in self.devices:
+            LOG.debug("Device is in devices list: " + str(self.devices[device]))
             device = {"dev_name": device, "mqtt_name": self.devices[device]['mqtt_name'], "sensor": self.devices[device]['sensor'], "ip": self.devices[device]['ip']}
             return device
         else:
-            LOG.debug("From CHECK_DEVICE_EXISTS " + str(device_wrong) + " not found in devices.")
-            self.speak_dialog('device_error',{'device': device_wrong})
+            LOG.info("From CHECK_DEVICE_EXISTS " + str(device_bkup) + " not found in devices.")
+            self.speak_dialog('device_error',{'device': device_bkup})
 
     def check_line(self, line):
         line = "power" + str(line)
