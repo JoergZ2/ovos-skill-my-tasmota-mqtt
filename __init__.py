@@ -124,6 +124,8 @@ class TasmotaMQTT(OVOSSkill):
     #checks before executing
     def check_device_exists(self, device):
         device = device.lower()
+        device = device.replace("von ","")
+        device = device.replace("vom ","")
         device_bkup = device
         LOG.debug("From function check_device_exists: " + str(device))
         if len(device.split()) > 1:
