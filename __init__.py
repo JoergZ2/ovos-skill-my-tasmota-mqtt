@@ -437,10 +437,13 @@ class TasmotaMQTT(OVOSSkill):
             device = splitTopic[1]
         if self.tasmota_mqtt_modus == "homeassistant":
             device = splitTopic[0]
-        values = str(msg.payload.decode())
-        values_dict = json.loads(values)
-        LOG.debug("From ON_MESSAGE: " + str(values_dict))
-        self.dialog_to_speak = self.evaluate_values_dict(values_dict,device)
+        values = msg.payload.decode()
+        LOG.info("values from ON_MESSAGE: " + str(values))
+        if "{" in str(values):
+            values_dict = json.loads(values)
+            self.dialog_to_speak = self.evaluate_values_dict(values_dict,device)
+        else:
+            pass
         self.event.set()
         return
 
