@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovos-skill-my-tasmota-mqtt"
+dynamic = ["version"]
+description = "Control Tasmota devices via MQTT"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "JoergZ2", email = ""}
+]
+keywords = ["ovos", "skill", "plugin"]
+dependencies = [
+    "pytz>=2025.2",
+    "tzlocal>=5.3.1",
+    "timezonefinder>=6.5.9",
+    "geocoder~=1.38",
+    "ovos-utils>=0.8.1",
+    "ovos-workshop>=0.0.16,<10.0.0",
+    "ovos-date-parser>=0.0.1,<1.0.0",
+    "ovos-utterance-normalizer>=0.0.1,<1.0.0",
+    "paho-mqtt==1.6.1",
+]
+
+[project.optional-dependencies]
+test = []
+
+[project.urls]
+Homepage = "https://github.com/JoergZ2/ovos-skill-my-tasmota-mqtt"
+
+[project.entry-points."opm.skill"]
+"ovos-skill-my-tasmota-mqtt" = "ovos_skill_my_tasmota_mqtt:MQTTSkill"
+
+[tool.setuptools]
+packages = ["ovos_skill_my_tasmota_mqtt"]
+license-files = ["LICENSE", "NOTICE"]
+
+[tool.setuptools.package-dir]
+ovos_skill_my_tasmota_mqtt = ""
+
+[tool.setuptools.dynamic]
+version = {attr = "ovos_skill_my_tasmota_mqtt.version.__version__"}
+
+[tool.setuptools.package-data]
+ovos_skill_date_time = [
+    "locale/**/*",
+]
