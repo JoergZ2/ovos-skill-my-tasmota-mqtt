@@ -9,7 +9,7 @@ description = "Control Tasmota devices via MQTT"
 readme = "README.md"
 license = {text = "Apache-2.0"}
 authors = [
-    {name = "JoergZ2", email = ""}
+    {name = "JoergZ2", email = "testjoerg@web.de"}
 ]
 keywords = ["ovos", "skill", "plugin"]
 dependencies = [
