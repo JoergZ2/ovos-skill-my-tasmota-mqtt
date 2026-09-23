@@ -31,7 +31,7 @@ test = []
 Homepage = "https://github.com/JoergZ2/ovos-skill-my-tasmota-mqtt"
 
 [project.entry-points."opm.skill"]
-"ovos-skill-my-tasmota-mqtt" = "ovos_skill_my_tasmota_mqtt:MQTTSkill"
+"ovos-skill-my-tasmota-mqtt" = "ovos_skill_my_tasmota_mqtt"
 
 [tool.setuptools]
 packages = ["ovos_skill_my_tasmota_mqtt"]
