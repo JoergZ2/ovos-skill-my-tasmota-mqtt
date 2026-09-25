@@ -1,0 +1,1 @@
+Timer {timer_nr}, time: {timer_time}, action {timer_action} switching, days {days}, repetition {timer_repeat}; 

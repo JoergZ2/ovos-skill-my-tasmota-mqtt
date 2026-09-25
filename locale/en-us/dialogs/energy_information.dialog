@@ -1,0 +1,1 @@
+voltage is {enrg_voltage} volt, power consumption is {enrg_current} kilowatt-hours, consumption today is {enrg_today}, overall consumption is{enrg_total} Kilowatt-hours
