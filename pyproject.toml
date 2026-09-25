@@ -44,6 +44,6 @@ ovos_skill_my_tasmota_mqtt = ""
 version = {attr = "ovos_skill_my_tasmota_mqtt.version.__version__"}
 
 [tool.setuptools.package-data]
-ovos_skill_date_time = [
+ovos_skill_my_tasmota_mqtt = [
     "locale/**/*",
 ]
