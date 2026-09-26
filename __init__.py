@@ -116,6 +116,7 @@ class TasmotaMQTT(OVOSSkill):
             self.single_days = self.lang_specifics["timer_specifics"]["single_days"]
             self.timer_repetition = self.lang_specifics["timer_specifics"]["timer_repetition"]
         self.capitalization = self.settings.get("capitalization", False)
+        LOG.info("Devices: " + str(self.devices))
 
     def on_settings_changed(self):
         """This method is called when the skill settings are changed."""
